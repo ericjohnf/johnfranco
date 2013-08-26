@@ -6,4 +6,4 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     #return render_template('index.html', name=name)
-    return "Four Inches High"
+    return "Four Inches High and rising"
