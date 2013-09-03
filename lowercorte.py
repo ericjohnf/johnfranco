@@ -1,9 +1,9 @@
 import os
-from flask import Flask
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    #return render_template('index.html', name=name)
-    return "Four Inches High and rising"
+    return render_template('index.html')
+
