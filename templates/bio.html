@@ -3,10 +3,11 @@
 <head>
    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/navbar.css') }}">
+   
    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>John Franco, Artist</title>
+    <title>John Franco, Bio</title>
     
     <style>
     
@@ -28,11 +29,11 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-          <li class="active"><a href="#"><span>home</span></a></li>
+          <li><a href="/"><span>home</span></a></li>
           <li><a href="/paintings"><span>paintings</span></a></li>
           <li><a href="/drawings"><span>drawings</span></a></li>
           <li><a href="/statement"><span>statement</span></a></li>
-          <li><a href="/bio"><span>bio</span></a></li>
+          <li class="active"><a href="#"><span>bio</span></a></li>
           <li><a href="/contact"><span>contact</span></a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -42,9 +43,26 @@
  
     <div class="row">
       <div class="col-md-8 col-md-offset-2" >
-        <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color: #EBEBEB;">
-              <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
-        </a>      
+        <br>
+        Education:<br>
+        New York Studio School                      1980-1983
+        <br>
+        National Academy, School of Fine Arts            1980
+        Certificate in Painting, Drawing and Sculpture
+        <br>
+        Columbia University							     1978
+        Bachelor of Science of Civil Engineering
+        <br>
+
+        SHOWS:  Group Shows 
+        				National Academy 
+        				NY Studio School 
+        				E.Green Gallery Hoboken, NJ
+        		        Coffey Gallery, Kingston, New York.
+                    <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color: #EBEBEB;">
+                          <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/john2sm.png') }}">
+                    </a>              
+        
       </div>
     </div>
     

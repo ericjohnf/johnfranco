@@ -3,12 +3,13 @@
 <head>
    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/navbar.css') }}">
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>John Franco, Artist</title>
+    <title>John Franco, Contact</title>
     
     <style>
+    
     
     </style>
 </head>
@@ -28,12 +29,12 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-          <li class="active"><a href="#"><span>home</span></a></li>
+          <li><a href="/"><span>home</span></a></li>
           <li><a href="/paintings"><span>paintings</span></a></li>
           <li><a href="/drawings"><span>drawings</span></a></li>
           <li><a href="/statement"><span>statement</span></a></li>
           <li><a href="/bio"><span>bio</span></a></li>
-          <li><a href="/contact"><span>contact</span></a></li>
+          <li class="active"><a href="#"><span>contact</span></a></li>
         </ul>
       </div><!--/.nav-collapse -->
       
@@ -41,15 +42,12 @@
     </div>
  
     <div class="row">
-      <div class="col-md-8 col-md-offset-2" >
-        <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color: #EBEBEB;">
-              <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
-        </a>      
+ 
       </div>
     </div>
     
     <div class"row">
-  		<div class="col-md-12">
+  		<div class="col-md-12" >
   			<p class="text-center copyright">
   				All site content and images copyright © John Franco
   			</p>
