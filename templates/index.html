@@ -17,7 +17,7 @@
   
   <div class="container">
     
-    <div class="navbar navbar-default col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 navbar-fixed-top">
+    <div class="navbar navbar-default col-xs-12 col-sm-10 col-md-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-bar"></span>
@@ -32,7 +32,6 @@
           <li><a href="/paintings"><span>paintings</span></a></li>
           <li><a href="/drawings"><span>drawings</span></a></li>
           <li><a href="/statement"><span>statement</span></a></li>
-          <li><a href="/bio"><span>bio</span></a></li>
           <li><a href="/contact"><span>contact</span></a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -40,23 +39,24 @@
       
     </div>
  
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2" >
-        <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color: #EBEBEB;">
+    <div class="row main">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-offset-2" >
+        <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color:#fff; /* #EBEBEB; */">
               <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
         </a>      
       </div>
     </div>
-    
-    <div class"row">
-  		<div class="col-md-12">
+
+    <div class="row">
+     	<div class="footer col-xs-12 col-sm-10 col-md-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
   			<p class="text-center copyright">
-  				All site content and images copyright © John Franco
+  				All site content and images <br> © John Franco
   			</p>
   		</div>
-    </div>
-    
-  </div>  
+    </div>      
+  </div>
+  
+
   <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
