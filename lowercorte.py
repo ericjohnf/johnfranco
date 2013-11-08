@@ -27,5 +27,10 @@ def drawing():
 
 @app.route('/painting')
 def painting():
-    return render_template('painting.html')       
-    
+    return render_template('painting.html')
+
+@app.route('/portfolio')
+@app.route('/portfolio/<date>')
+def portfolio(date=None):
+    return render_template('portfolio.html',date=date)
+

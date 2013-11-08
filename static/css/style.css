@@ -8,10 +8,10 @@ body
 .navbar 
 {
   margin-top:0px;
-  border-bottom:3px solid black !important;
+  border-bottom:2px solid black !important;
   background-color:#fff; /*#EBEBEB;*/
   border:0px;
-  border-radius:3px;
+  border-radius:2px;
 /*  border-left:3px solid black;*/
 /*  border-right:3px solid black;*/
 }
@@ -47,7 +47,7 @@ body
 }
 
 .footer {
-  border-top:3px solid black;
+  border-top:2px solid black;
 /*  border-left:3px solid black;*/
 /*  border-right:3px solid black;*/
   border-radius:3px;
