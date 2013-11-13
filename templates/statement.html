@@ -1,74 +1,104 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html lang="en">
-<head>
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/navbar.css') }}">
-   
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>John Franco, Statement</title>
+  <head>
     
+    <meta charset="utf-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/sticky-footer-navbar.css') }}">
+    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+
+    <title>John Franco, Artist</title>
+
     <style>
-    
+      #logo {
+        height:38px;
+      }
+      .logo-pad {
+        padding:6px 15px !important;
+      }
+      
     </style>
-</head>
-<body>
-  <!-- Static navbar -->
-  
-  <div class="container">
-    
-    <div class="navbar navbar-default col-xs-12 col-sm-10 col-md-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand navbar-left" href="/"><img src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-left logo-pad" href="/"><img id="logo" src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+            <!-- <a class="navbar-brand" href="#">Project name</a> -->
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/statement">Statement</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                   <li class="dropdown-header">Recent Shows</li>
+                  <li><a href="/portfolio/fall2013">Fall 2013</a></li>
+                  <li><a href="/portfolio/winter2008">Winter 2008</a></li>
+                  <li><a href="#">Early 2000</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Older Work</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-          <li><a href="/"><span>home</span></a></li>
-          <li><a href="/paintings"><span>paintings</span></a></li>
-          <li><a href="/drawings"><span>drawings</span></a></li>
-          <li class="active"><a href="#"><span>statement</span></a></li>
-          <li><a href="/contact"><span>contact</span></a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-      
-      
-    </div>
-    
-    <div class="row main">
-      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-offset-2" style="min-height:520px;">
-        <br><br>
-        <span>"I'm not trying to change the world"  anyway I don't need to, it's changing fast enough. I'm just trying to stay awake through the turmoil-- I'm following the choice and value of my attention. I'm watching the unfolding of my own thoughts, and their subsequent retreat. And yes, sometimes I allow my work to conclude, pass the time barrier and erect themselves as finished (that which only moments/days ago was the wind). </span> 
-          <br><br>
-        <span>And no, finished pieces don't conclude anything. Don't contain anything, the best of them look ready for the next thing, and could be picked up and worked on immediately.
-        </span>
-        <br><br>
-        <span style="padding-bottom: 20px;">
-        But the Possibilities need to be addressed, supported, asserted and the Joy of the Possibilities needs to be Affirmed. 
-        </span>
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Statement.</h1>
+        </div>
+          <br>
+          <p><span>"I'm not trying to change the world"  anyway I don't need to, it's changing fast enough. I'm just trying to stay awake through the turmoil-- I'm following the choice and value of my attention. I'm watching the unfolding of my own thoughts, and their subsequent retreat. And yes, sometimes I allow my work to conclude, pass the time barrier and erect themselves as finished (that which only moments/days ago was the wind). </span><p> 
+          <p><span>And no, finished pieces don't conclude anything. Don't contain anything, the best of them look ready for the next thing, and could be picked up and worked on immediately.</span></p>
+          <p><span>
+          But the Possibilities need to be addressed, supported, asserted and the Joy of the Possibilities needs to be Affirmed. 
+          </span></p>
+          <br>
+          <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color:#fff; /* #EBEBEB; */">
+                <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/johnny.png') }}">
+          </a>  
+       
       </div>
     </div>
-    
-    <div class"row">
-  		<div class="footer col-xs-12 col-sm-10 col-md-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
-  			<p class="text-center copyright">
-  				All site content and images <br>© John Franco
-  			</p>
-  		</div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">All site content and images © John Franco</p>
+      </div>
     </div>
-    
-  </div>  
-  <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
-      <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
-      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-      
-</body>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </body>
 </html>

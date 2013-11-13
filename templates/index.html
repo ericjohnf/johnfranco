@@ -22,6 +22,12 @@
         padding:6px 15px !important;
       }
       
+      .dropdown-menu > .active > a, 
+      .dropdown-menu > .active > a:hover, 
+      .dropdown-menu > .active > a:focus {
+/*        background-color: #b84d45 !important;*/
+      }
+      
     </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -50,19 +56,16 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">Statement</a></li>
               <li><a href="#contact">Contact</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                   <li class="dropdown-header">Recent Shows</li>
-                  <li><a href="/portfolio/fall2013">Fall 2013</a></li>
-                  <li><a href="/portfolio/winter2008">Winter 2008</a></li>
-                  <li><a href="#">Early 2000</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Older Work</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                   <li class="dropdown-header">2013</li>
+                    <li><a href="/show/2013/paint">Paintings</a></li>
+                    <li><a href="/show/2013/draw">Drawings</a></li>
+                   <li class="dropdown-header">2008</li>
+                    <li><a href="/show/2008/paint">Paintings</a></li>
+                    <li><a href="/show/2008/draw">Drawings</a></li>
                 </ul>
               </li>
             </ul>
@@ -76,7 +79,7 @@
           <h1>John Franco.</h1>
         </div>
         <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color:#fff; /* #EBEBEB; */">
-              <img class="img-rounded" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
+              <img class="img" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
         </a>      
       </div>
     </div>
