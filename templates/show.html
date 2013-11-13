@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/sticky-footer-navbar.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/4-col-portfolio.css') }}">
+    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+
+    <title>John Franco, Artist</title>
+
+    <style>
+      #logo {
+        height:38px;
+      }
+      .logo-pad {
+        padding:6px 15px !important;
+      }
+      
+      .page-header{
+          text-transform: capitalize;
+      }
+      
+      .dropdown-menu > .active > a {
+/*        background-color: #b84d45 !important;*/
+      }
+      
+      .odd {
+        
+      }
+      
+      .even {
+       margin-top:20px; 
+      }
+      
+      .prime {
+        margin-top:5px;
+      }
+      
+      .cube {
+        
+      }
+      
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-left logo-pad" href="/"><img id="logo" src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+            <!-- <a class="navbar-brand" href="#">Project name</a> -->
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header {{ '%s' % 'active' if date=='2013' }}">2013</li>
+                   <li><a href="/show/2013/paint">Paintings</a></li>
+                   <li><a href="/show/2013/draw">Drawings</a></li>
+                  <li class="dropdown-header {{ '%s' % 'active' if date=='2008' }}">2008</li>
+                   <li><a href="/show/2008/paint">Paintings</a></li>
+                   <li><a href="/show/2008/draw">Drawings</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      <div class="container">
+        
+        <div class="row">
+          
+          
+          
+          <div class="col-lg-12">
+            <h1 class="page-header">{{date}},{{total}},{{names}} <small style="text-transform ">{{medium}}</small></h1>
+          </div>
+
+        </div>
+
+        {% for row in names|batch(3) %}
+          <div class="row">
+            {% for item in row  %}
+            <div class="col-md-4 portfolio-item {{ loop.cycle('odd', 'even','prime','cube') }}">
+                <a href="/single/{{date}}/{{medium}}/{{item}}"><img class="img-responsive" src="/static/img/works/{{date}}/{{medium}}/{{item}}"></a>
+            </div>
+            {% endfor %}  
+          </div> 
+        {% endfor %}
+
+        <hr>
+
+        <!-- <div class="row text-center">
+        
+          <div class="col-lg-12">
+            <ul class="pagination">
+              <li><a href="#">&laquo;</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">&raquo;</a></li>
+            </ul>        
+          </div>
+
+        </div> -->
+
+      </div><!-- /.container -->
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">All site content and images © John Franco</p>
+      </div>
+    </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </body>
+</html>
