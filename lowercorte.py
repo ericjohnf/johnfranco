@@ -28,8 +28,13 @@ def is_number(s):
 
 
 @app.route('/')
-def hello():
-    return render_template('index.html')
+def hello(names=None):
+    the_path = './static/img/works/'
+    names = [str(name) for name in os.listdir(the_path)]
+    if '.DS_Store' in names:
+      names.remove('.DS_Store')
+  
+    return render_template('index.html',names=names)
     
 @app.route('/statement')
 def state():
@@ -62,7 +67,7 @@ def single(date=None,medium=None,file=None,names=None):
     return render_template('single.html',date=date,medium=medium,file=file,names=names)
 
 @app.route('/show')
-@app.route('/show/<date>/<medium>')
+@app.route('/show/<date>/<medium>/')
 def show(date=None,medium=None,total=None,names=None):
     the_path = './static/img/works/'+date+'/'+medium+'/'
     names = [str(name) for name in os.listdir(the_path)]
