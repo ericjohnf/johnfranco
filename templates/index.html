@@ -27,7 +27,7 @@
       .dropdown-menu > .active > a:focus {
 /*        background-color: #b84d45 !important;*/
       }
-      
+
     </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,6 +57,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Prints</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -76,11 +77,25 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>John Franco.</h1>
+          <h1>John Franco Artist</h1>
         </div>
-        <a href="#" class="thumbnail" style="border:0px; padding:0px;background-color:#fff; /* #EBEBEB; */">
-              <img class="img" style="margin-bottom:30px;" src="{{ url_for('static', filename='img/whalehome.png') }}">
-        </a>      
+        {% for show in names|reverse %}
+        <div class="row">
+          <div class="page-header">
+            <h1>{{show}}</h1>
+          </div>
+               <div class="col-lg-6 col-md-6 portfolio-item">
+                 <a href="/show/{{show}}/paint"><img class="img" height="400" src="./static/img/works/{{show}}/paint/1.png"></a>
+                 <p class="center-block"><a href="/show/{{show}}/paint">Oil Paintings</a></p>
+               </div>
+
+               <div class="col-lg-6 col-md-6 portfolio-item">
+                 <a href="./show/{{show}}/draw/"><img class="img" height="400" src="./static/img/works/{{show}}/draw/1.png"></a>
+                   <p><a href="./static/img/works/{{show}}/draw/">Drawings</a></p>
+               </div>
+
+        </div>
+        {% endfor %}
       </div>
     </div>
 
