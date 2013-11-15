@@ -33,7 +33,8 @@ def hello(names=None):
     names = [str(name) for name in os.listdir(the_path)]
     if '.DS_Store' in names:
       names.remove('.DS_Store')
-  
+    
+    names.sort(key=alphanum_key)  
     return render_template('index.html',names=names)
     
 @app.route('/statement')
