@@ -68,9 +68,9 @@
                    <li class="dropdown-header">2013</li>
                     <li><a href="/show/2013/paint">Paintings</a></li>
                     <li><a href="/show/2013/draw">Drawings</a></li>
-                   <li class="dropdown-header">2008</li>
-                    <li><a href="/show/2008/paint">Paintings</a></li>
-                    <li><a href="/show/2008/draw">Drawings</a></li>
+                   <li class="dropdown-header">2010</li>
+                    <li><a href="/show/2010/paint">Paintings</a></li>
+                    <li><a href="/show/2010/draw">Drawings</a></li>
                 </ul>
               </li>
             </ul>
@@ -85,19 +85,20 @@
         </div>
         {% for show in names|reverse %}
         <div class="row">
-          <div class="page-header special" >
-            <h1>{{show}}</h1>
-          </div>
+          
+            <h2>{{show}}</h2>
+          
+          
                <div class="col-lg-6 col-md-6 portfolio-item">
-                 <a href="/show/{{show}}/paint"><img class="img" height="400" src="./static/img/works/{{show}}/paint/1.png"></a>
                  <p class="center-block"><a href="/show/{{show}}/paint">Oil Paintings</a></p>
+                 <a href="/show/{{show}}/paint"><img class="img-responsive" height="400" src="./static/img/works/{{show}}/paint/1.jpg"></a>
                </div>
 
                <div class="col-lg-6 col-md-6 portfolio-item">
-                 <a href="./show/{{show}}/draw/"><img class="img" height="400" src="./static/img/works/{{show}}/draw/1.png"></a>
-                   <p><a href="./static/img/works/{{show}}/draw/">Drawings</a></p>
+                 <p><a href="./static/img/works/{{show}}/draw/">Drawings</a></p>
+                 <a href="./show/{{show}}/draw/"><img class="img-responsive" height="400" src="./static/img/works/{{show}}/draw/1.jpg"></a> 
                </div>
-
+          
         </div>
         {% endfor %}
       </div>
