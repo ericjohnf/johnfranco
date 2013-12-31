@@ -75,16 +75,16 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/contact">Contact</a></li>
               <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header {{ '%s' % 'active' if date=='2013' }}">2013</li>
                    <li><a href="/show/2013/paint">Paintings</a></li>
                    <li><a href="/show/2013/draw">Drawings</a></li>
-                  <li class="dropdown-header {{ '%s' % 'active' if date=='2008' }}">2008</li>
-                   <li><a href="/show/2008/paint">Paintings</a></li>
-                   <li><a href="/show/2008/draw">Drawings</a></li>
+                  <li class="dropdown-header {{ '%s' % 'active' if date=='2010' }}">2010</li>
+                   <li><a href="/show/2010/paint">Paintings</a></li>
+                   <li><a href="/show/2010/draw">Drawings</a></li>
                 </ul>
               </li>
             </ul>
@@ -106,12 +106,13 @@
         <div class="row">
 
                 <div class="col-lg-12">
-                  <h3 class="page-header">Continue Looking</h3>
+                  <h4 class="page-header">Continue</h4>
                 </div>
-                {% for item in names %}
                 
+                {% for item in names|slice(4) %}
+
                 <div class="col-sm-3 col-xs-6">
-                        <a href="#"><img class="img-responsive portfolio-item" src="http://placehold.it/500x300"></a>
+                        <a href="/single/{{date}}/{{medium}}/{{ item|random() }}"><img class="img-responsive" src="/static/img/works/{{date}}/{{medium}}/{{ item|random() }}"></a>
                 </div>
                 {% endfor %}
               </div>

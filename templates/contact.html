@@ -1,66 +1,125 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html lang="en">
-<head>
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
-   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/navbar.css') }}">
-      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>John Franco, Contact</title>
+  <head>
     
+    <meta charset="utf-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/sticky-footer-navbar.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/4-col-portfolio.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+
+    <title>John Franco, Artist</title>
+
     <style>
-    
-    
+      #logo {
+        height:38px;
+      }
+      .logo-pad {
+        padding:6px 15px !important;
+      }
+      
+      .page-header{
+          text-transform: capitalize;
+      }
+      
+      .dropdown-menu > .active > a {
+/*        background-color: #b84d45 !important;*/
+      }
+      
+      .odd {
+        
+      }
+      
+      .even {
+       margin-top:20px; 
+      }
+      
+      .prime {
+        margin-top:5px;
+      }
+      
+      .cube {
+        
+      }
+      
     </style>
-</head>
-<body>
-  <!-- Static navbar -->
-  
-  <div class="container">
-    
-    <div class="navbar navbar-default col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 navbar-fixed-top">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand navbar-left" href="/"><img src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-left logo-pad" href="/"><img id="logo" src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+            <!-- <a class="navbar-brand" href="#">Project name</a> -->
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">2013</li>
+                   <li><a href="/show/2013/paint">Paintings</a></li>
+                   <li><a href="/show/2013/draw">Drawings</a></li>
+                  <li class="dropdown-header">2010</li>
+                   <li><a href="/show/2010/paint">Paintings</a></li>
+                   <li><a href="/show/2010/draw">Drawings</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-          <li><a href="/"><span>home</span></a></li>
-          <li><a href="/paintings"><span>paintings</span></a></li>
-          <li><a href="/drawings"><span>drawings</span></a></li>
-          <li><a href="/statement"><span>statement</span></a></li>
-          <li><a href="/bio"><span>bio</span></a></li>
-          <li class="active"><a href="#"><span>contact</span></a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-      
-      
+
+      <!-- Begin page content -->
+      <div class="container">
+        
+        <div class="row">
+          
+          
+          <div class="col-lg-12">
+            <h2 class="page-header">Contact</h2>
+            <img class="img-rounded" id="johnny" src="{{ url_for('static', filename='img/john.jpg') }}">
+            <p>Send <strong><a href="mailto:johnfranco721@gmail.com">me</a></strong> an email.</p>
+            
+          </div>
+
+        </div>
+
+      </div><!-- /.container -->
     </div>
- 
-    <div class="row">
- 
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">All site content and images © John Franco</p>
       </div>
     </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     
-    <div class"row">
-  		<div class="col-md-12" >
-  			<p class="text-center copyright">
-  				All site content and images copyright © John Franco
-  			</p>
-  		</div>
-    </div>
-    
-  </div>  
-  <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
-      <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
-      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-      
-</body>
+  </body>
 </html>

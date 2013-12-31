@@ -5,57 +5,6 @@ body
   font-size:15px;
 }
 
-.navbar 
-{
-  margin-top:0px;
-  border-bottom:2px solid black !important;
-  background-color:#fff; /*#EBEBEB;*/
-  border:0px;
-  border-radius:2px;
-/*  border-left:3px solid black;*/
-/*  border-right:3px solid black;*/
-}
-
-.navbar-brand 
-{
-  padding:0px;  
-}
-
-.navbar-nav > li > a 
-{
-  color: black !important;
-}
-
-.navbar-nav > li > a:hover
-{
- 
-}
-
-.navbar-nav > .active > a > span
-{
-  border-bottom:1px dashed black; 
-}
-
-.navbar-nav > li> a > span:hover
-{
-  border-bottom:1px dashed black; 
-}
-
-.navbar-nav > .active > a
-{
-  background-color:#fff !important; /*#EBEBEB !important;*/
-}
-
-.footer {
-  border-top:2px solid black;
-/*  border-left:3px solid black;*/
-/*  border-right:3px solid black;*/
-  border-radius:3px;
-/*  margin-left: 36.94%;    */
-/*  margin-right: 36.94%;    */
-  /* 365.5px / 988px = 0.12550 */
-}
-
 .copyright {
   font-size: 9pt;
   color: #000;
@@ -89,4 +38,49 @@ body
 {
 	padding-right: 1000px;
 	margin-right: -1000px;
+}
+
+.bottom-border {
+  border-bottom: 1px solid black;
+}
+
+.max-height {
+  max-height:425px;
+}
+/*Adding extra footer styling*/
+#footer {
+  margin-top:25px;
+}
+
+.inline {
+  display:inline;
+}
+
+.modal-body li {
+  height:52px;
+  list-style-type:none;
+  clear:both;
+  border-bottom:1px solid #eeeeee;
+  padding-bottom:9px;
+}
+
+.modal-body li:last-item {
+  border-bottom:0px;
+}
+
+.modal-body {
+  padding-bottom:0px;
+}
+
+#catalogModal .modal-footer {
+ margin-top:0px; 
+}
+
+.pull-down {
+  margin-top:3px;
+  margin-right:2px;
+}
+
+.small {
+  font-size:8px;
 }
