@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/bootstrap.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/sticky-footer-navbar.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dist/css/4-col-portfolio.css') }}">
+    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+
+    <title>John Franco, Artist</title>
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script>
+    
+    function carouselNormalization() {
+    var items = $('#carousel-example-generic .item'), //grab all slides
+        heights = [], //create empty array to store height values
+        tallest; //create variable to make note of the tallest slide
+        active_height = $('#carousel-example-generic .active').height(); // First active painting height
+        
+    if (items.length) {
+      
+        function activeHeight(){
+            items.each(function() {
+              $(this).css('max-height',active_height + 'px');
+            });
+        }            
+      
+      
+        function normalizeHeights() {
+            items.each(function() { //add heights to array
+                heights.push($(this).height()); 
+            });
+            
+            $('#carousel-example-generic .active')
+            
+            tallest = Math.max.apply(null, heights); //cache largest value
+            items.each(function() {
+                $(this).css('min-height',tallest + 'px');
+            });
+        };
+        normalizeHeights();
+
+        $(window).on('resize orientationchange', function () {
+            tallest = 0, heights.length = 0; //reset vars
+            items.each(function() {
+                $(this).css('min-height','0'); //reset min-height
+            }); 
+            // normalizeHeights(); //run it again 
+            activeHeight()
+        });
+    }
+    }
+    
+    $(document).ready(function(){
+      // carouselNormalization();
+    });
+    
+    </script>    
+    <style>
+      #logo {
+        height:38px;
+      }
+      .logo-pad {
+        padding:6px 15px !important;
+      }
+      
+      .page-header{
+          text-transform: capitalize;
+      }
+      
+      .dropdown-menu > .active > a {
+/*        background-color: #b84d45 !important;*/
+      }
+      
+      .odd {
+        
+      }
+      
+      .even {
+       margin-top:20px; 
+      }
+      
+      .prime {
+        margin-top:5px;
+      }
+      
+      .cube {
+        
+      }
+      
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+      
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-left logo-pad" href="/"><img id="logo" src="{{ url_for('static', filename='img/sig-black.png') }}"></a>
+            <!-- <a class="navbar-brand" href="#">Project name</a> -->
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header {{ '%s' % 'active' if date=='2013' }}">2013</li>
+                   <li><a href="/show/2013/paint">Paintings</a></li>
+                   <li><a href="/show/2013/draw">Drawings</a></li>
+                  <li class="dropdown-header {{ '%s' % 'active' if date=='2010' }}">2010</li>
+                   <li><a href="/show/2010/paint">Paintings</a></li>
+                   <li><a href="/show/2010/draw">Drawings</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      <div class="container">
+        
+        <div class="row">
+          <p class="text-center"><a href="/show/{{date}}/{{medium}}"><span class="glyphicon glyphicon-arrow-up"></span></p>
+          <!-- New way. Haven't perfected it yet.
+             
+          <div id="carousel-example-generic" class="carousel slide" data-pause="stop">
+
+            
+            <div class="carousel-inner">
+              
+              <div class="item active col-md-8 col-md-offset-2">
+                <img src="/static/img/works/{{date}}/{{medium}}/{{file}}">
+              </div>
+              
+              
+              {% for item in names %}
+              <div class="item col-md-8 col-md-offset-2">
+                <img src="/static/img/works/{{date}}/{{medium}}/{{item}}">
+              </div>
+              {% endfor %}
+            </div>
+
+            
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div> -->
+
+            
+              <!-- Old way -->
+              <div class="col-md-8 col-md-offset-2">
+              <img class="img-responsive" src="/static/img/works/{{date}}/{{medium}}/{{file}}">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+                <div class="col-lg-12">
+                  <h4 class="page-header">Continue</h4>
+                </div>
+
+                {% for item in navNames %}
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                        <a href="/single/{{date}}/{{medium}}/{{item}}"><img class="img-responsive" src="/static/img/works/{{date}}/{{medium}}/{{item}}"></a>
+                </div>
+                {% endfor %}
+              </div>
+
+      </div><!-- /.container -->
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">All site content and images © John Franco</p>
+      </div>
+    </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+  </body>
+</html>
