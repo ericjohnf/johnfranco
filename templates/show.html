@@ -165,7 +165,8 @@
     var catalog
     $.getJSON( "/static/img/works/{{date}}/catalog.json", function( data ) {
       
-      catalog=data; 
+      catalog=data;
+      console.log(data); 
       var medium = "{{medium}}";
       $.each( data[medium], function( key, val ) {
         console.log(key,val);
