@@ -1,6 +1,6 @@
 import os, os.path, re
 import sqlite3
-
+from werkzeug.serving import run_simple
 
 from flask import Flask, url_for, render_template
 
@@ -63,9 +63,10 @@ def single(date=None,medium=None,file=None,names=None):
     the_path = './static/img/works/'+date+'/'+medium+'/'
     names = [str(name) for name in os.listdir(the_path)]
     names.sort(key=alphanum_key)
-    if file in names:
-      names.remove(file)
-    return render_template('single.html',date=date,medium=medium,file=file,names=names)
+    navNames = getNavNames(names,file)
+      
+    print names  
+    return render_template('single_demo.html',date=date,medium=medium,file=file,names=names,navNames=navNames)
 
 @app.route('/show')
 @app.route('/show/<date>/<medium>/')
@@ -79,3 +80,26 @@ def show(date=None,medium=None,total=None,names=None):
       # split = re.findall(r"[^\W\d_]+|\d+", date)
       
     return render_template('show.html',date=date,medium=medium,total=total,names=names)
+
+def getNavNames(names,file): # lazy helper cause i'm lazy and dumb derp
+    
+    if file not in names: # if this isn't here, just dump the first four
+        return names[1:5] 
+        
+    length = len(names)
+    current_frame = names.index(file)
+    if current_frame == 0:
+      return names[1:5]
+    elif current_frame == 1:
+      return [names[0],names[2],names[3],names[4]]
+    elif current_frame == 2:
+      return [names[0],names[1],names[3],names[4]]
+    elif current_frame > 2 and current_frame<length-2: 
+      return [names[current_frame-2], names[current_frame-1], names[current_frame+1], names[current_frame+2]]
+    elif current_frame<length-1:
+      return [names[current_frame-3], names[current_frame-2], names[current_frame-1], names[current_frame+1]]
+    else:
+      return [names[current_frame-4], names[current_frame-3], names[current_frame-2], names[current_frame-1]]  
+
+if __name__ == '__main__':
+    run_simple('localhost', 8000, app, use_reloader=True, use_debugger=True, use_evalex=True) 

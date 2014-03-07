@@ -2,3 +2,4 @@ bin
 lib
 include
 *.pyc
+*.DS_Store
