@@ -76,6 +76,17 @@ def single(date=None,medium=None,file=None,names=None):
     print names  
     return render_template('single_demo.html',date=date,medium=medium,file=file,names=names,navNames=navNames)
 
+@app.route('/showdb/<date>/<medium>/', methods=['GET'])
+def showdb(date=None,medium=None):
+    query = """SELECT description FROM art WHERE show=:sdate AND medium=:medium ORDER BY id;"""  
+    
+    result = app.engine.execute(text(query),sdate=date,medium=medium)
+    
+    for row in result: 
+        print row[0]
+    
+    return "Nothing"
+
 @app.route('/show')
 @app.route('/show/<date>/<medium>/')
 def show(date=None,medium=None,total=None,names=None):
@@ -109,10 +120,11 @@ def getNavNames(names,file): # lazy helper cause i'm lazy and dumb derp
     else:
       return [names[current_frame-4], names[current_frame-3], names[current_frame-2], names[current_frame-1]]  
 
-@app.route('/art/<id>')
-def art(id):
+@app.route('/art/<id>/')
+def entity(id):
     """ Load cover photo onna store by store tip"""
     query = """SELECT img FROM art WHERE id=:id"""
+    
     result = app.engine.execute(text(query),id=id).first()
     mime_type = 'image/jpeg'
     # Wait does this image even exist?
@@ -130,8 +142,8 @@ def art(id):
 
     return Response(img, mimetype=mime_type)    
 
-
 def insertArt():
+    
     for date in art:
         for medium, pieces in dict.items(art[date]):
             the_path = './static/img/works/'+date+'/'+medium+'/'
@@ -150,8 +162,8 @@ def insertArt():
                                  VALUES (:title, :description, :medium, :img, :show, :height, :width, :year, :price, :orderid)'''
                         
                       # app.engine.execute(text(query), title='Untitled',
-                      #                                 description='',
-                      #                                 medium=piece['medium'],
+                      #                                 description=piece['medium'],
+                      #                                 medium=medium,
                       #                                 img=bytes,
                       #                                 show=date,
                       #                                 height=piece['height'],
