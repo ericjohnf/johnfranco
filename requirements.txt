@@ -6,5 +6,5 @@ gunicorn==17.5
 itsdangerous==0.22
 stevedore==0.4
 wsgiref==0.1.2
-sqlalchemy
-psycopg2
+SQLAlchemy==0.9.8
+psycopg2==2.6
