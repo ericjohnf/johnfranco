@@ -6,13 +6,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 from werkzeug.serving import run_simple
 
-from flask import Flask, url_for, render_template, Response
+from flask import Flask, url_for, render_template, Response, send_file, flash, redirect
 
-art = {'2010': {'paint': [{'medium': 'Oil on Linen', 'date_completed': 2008, 'price': 5760, 'height': 36, 'width': 40, 'id': 1}, {'medium': 'Oil on Linen', 'date_completed': 2007, 'price': 4480, 'height': 40, 'width': 28, 'id': 2}, {'medium': 'Oil on Linen', 'date_completed': 2006, 'price': 4080, 'height': 34, 'width': 30, 'id': 3}, {'medium': 'Oil on Linen', 'date_completed': 2010, 'price': 4608, 'height': 32, 'width': 36, 'id': 4}, {'medium': 'Oil on Linen', 'date_completed': 2010, 'price': 4896, 'height': 34, 'width': 36, 'id': 5}, {'medium': 'Oil on Linen', 'date_completed': 2007, 'price': 5440, 'height': 34, 'width': 40, 'id': 6}, {'medium': 'Oil on Linen', 'date_completed': 2008, 'price': 4352, 'height': 32, 'width': 34, 'id': 7}, {'medium': 'Oil on Linen', 'date_completed': 2007, 'price': 7040, 'height': 44, 'width': 40, 'id': 8}, {'medium': 'Oil on Linen', 'date_completed': 2012, 'price': 8448, 'height': 44, 'width': 48, 'id': 9}, {'medium': 'Oil on Linen', 'date_completed': 2008, 'price': 2000, 'height': 40, 'width': 46, 'id': 10}, {'medium': 'Oil on Linen', 'date_completed': 2012, 'price': 3840, 'height': 30, 'width': 32, 'id': 11}, {'medium': 'Oil on Linen', 'date_completed': 2006, 'price': 4352, 'height': 32, 'width': 34, 'id': 12}, {'medium': 'Oil on Linen', 'date_completed': 2011, 'price': 4896, 'height': 34, 'width': 36, 'id': 13}, {'medium': 'Oil on Linen', 'date_completed': 2011, 'price': 4896, 'height': 34, 'width': 36, 'id': 14}, {'medium': 'Oil on Linen', 'date_completed': 2010, 'price': 3120, 'height': 30, 'width': 26, 'id': 15}, {'medium': 'Oil on Linen', 'date_completed': 2010, 'price': 3840, 'height': 30, 'width': 32, 'id': 16}, {'medium': 'Oil on Linen', 'date_completed': 2004, 'price': 4080, 'height': 34, 'width': 30, 'id': 17}, {'medium': 'Oil on Linen', 'date_completed': 2004, 'price': 3808, 'height': 28, 'width': 34, 'id': 18}, {'medium': 'Oil on Linen', 'date_completed': 2002, 'price': 4080, 'height': 30, 'width': 34, 'id': 19}, {'medium': 'Oil on Linen', 'date_completed': 2010, 'price': 6048, 'height': 36, 'width': 42, 'id': 20}], 'draw': [{'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 1}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 2}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 3}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 4}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 5}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 6}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 7}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 8}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2010, 'price': 500, 'height': 18, 'width': 27, 'id': 9}]}, '2013': {'paint': [{'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 24, 'width': 20, 'id': 1}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 26, 'width': 22, 'id': 2}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 26, 'width': 22, 'id': 3}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 26, 'width': 22, 'id': 4}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 26, 'width': 25, 'id': 5}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 24, 'width': 20, 'id': 6}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 32, 'width': 30, 'id': 7}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 26, 'width': 24, 'id': 8}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 32, 'width': 26, 'id': 9}, {'medium': 'Oil on Linen', 'date_completed': 2013, 'price': 2000, 'height': 24, 'width': 27, 'id': 10}], 'draw': [{'medium': 'Graphite on Bond Paper', 'date_completed': 2013, 'price': 500, 'height': 18, 'width': 27, 'id': 1}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2013, 'price': 500, 'height': 18, 'width': 27, 'id': 2}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 3}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 4}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 5}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 6}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 7}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 8}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2012, 'price': 500, 'height': 18, 'width': 27, 'id': 9}, {'medium': 'Graphite on Bond Paper', 'date_completed': 2013, 'price': 500, 'height': 18, 'width': 27, 'id': 10}]}}
+from forms import ArtForm
+from operator import itemgetter
 
+valid_shows = ['2010','2013']
+valid_medium = ['paint','draw']
 
 app = Flask(__name__)
 app.engine = create_engine(os.environ['HEROKU_URI'])
+app.secret_key = 'super secret key'
 app.debug = True
 # helpers
 def tryint(s):
@@ -64,31 +68,41 @@ def drawing():
 @app.route('/painting')
 def painting():
     return render_template('painting.html')
-    
-@app.route('/single')
-@app.route('/single/<date>/<medium>/<file>')
-def single(date=None,medium=None,file=None,names=None):
-    the_path = './static/img/works/'+date+'/'+medium+'/'
-    names = [str(name) for name in os.listdir(the_path)]
-    names.sort(key=alphanum_key)
-    navNames = getNavNames(names,file)
-      
-    print names  
-    return render_template('single_demo.html',date=date,medium=medium,file=file,names=names,navNames=navNames)
 
-@app.route('/showdb/<date>/<medium>/', methods=['GET'])
+
+@app.route('/art/<show>/<medium>/<file>')
+def singleArt(show=None,medium=None,file=None):
+    # This function will return the image and ascn and desc
+    if show not in valid_shows or medium not in valid_medium:
+        flash('error', "Can't find that show.")
+        return redirect(url_for('hello'))
+    # the_path = './static/img/works/'+date+'/'+medium+'/'+file+'.jpg'
+    query = "SELECT filename from art where show=:show and medium=:medium"
+    result = app.engine.execute(text(query),medium=medium,show=show,file=file)
+    artwork = [piece['filename'] for piece in result]
+
+    navNames = getNavNames(artwork,file)
+    return render_template('art.html',show=show,medium=medium,file=file,names=artwork,navNames=navNames)
+
+@app.route('/show/<date>/<medium>/', methods=['GET'])
 def showdb(date=None,medium=None):
-    query = """SELECT description FROM art WHERE show=:sdate AND medium=:medium ORDER BY id;"""  
     
+    if date not in valid_shows or medium not in valid_medium:
+        flash('error', "Can't find that show.")
+        return redirect(url_for('hello'))
+    
+    query = """SELECT title,description,height,width,year,price,filename FROM art WHERE show=:sdate AND medium=:medium ORDER BY filename;"""  
     result = app.engine.execute(text(query),sdate=date,medium=medium)
-    
-    for row in result: 
-        print row[0]
-    
-    return "Nothing"
+    artwork = [dict(piece) for piece in result]
 
-@app.route('/show')
-@app.route('/show/<date>/<medium>/')
+    the_path = './static/img/works/'+date+'/'+medium+'/'
+    
+    artwork = sorted(artwork, key=lambda k: tryint(k['filename']))
+    
+    return render_template('showdb.html',date=date,medium=medium,total=len(artwork),the_path=the_path, artwork=artwork)
+
+@app.route('/show_old')
+@app.route('/show_old/<date>/<medium>/')
 def show(date=None,medium=None,total=None,names=None):
     the_path = './static/img/works/'+date+'/'+medium+'/'
     names = [str(name) for name in os.listdir(the_path)]
@@ -99,6 +113,15 @@ def show(date=None,medium=None,total=None,names=None):
       # split = re.findall(r"[^\W\d_]+|\d+", date)
       
     return render_template('show.html',date=date,medium=medium,total=total,names=names)
+
+@app.route('/single/<date>/<medium>/<file>')
+def single(date=None,medium=None,file=None,names=None):
+    the_path = './static/img/works/'+date+'/'+medium+'/'
+    names = [str(name) for name in os.listdir(the_path)]
+    names.sort(key=alphanum_key)
+    navNames = getNavNames(names,file)
+    print navNames
+    return render_template('single_demo.html',date=date,medium=medium,file=file,names=names,navNames=navNames)
 
 def getNavNames(names,file): # lazy helper cause i'm lazy and dumb derp
     
@@ -119,28 +142,6 @@ def getNavNames(names,file): # lazy helper cause i'm lazy and dumb derp
       return [names[current_frame-3], names[current_frame-2], names[current_frame-1], names[current_frame+1]]
     else:
       return [names[current_frame-4], names[current_frame-3], names[current_frame-2], names[current_frame-1]]  
-
-@app.route('/art/<id>/')
-def entity(id):
-    """ Load cover photo onna store by store tip"""
-    query = """SELECT img FROM art WHERE id=:id"""
-    
-    result = app.engine.execute(text(query),id=id).first()
-    mime_type = 'image/jpeg'
-    # Wait does this image even exist?
-    if not result:
-        img = bytes()
-        return Response(img, mimetype=mime_type)    
-    # But does it have a cover photo?
-    if not result['img']:
-        img = bytes()
-    else:
-        img = result['img']
-        # just in case
-        if img[:8] == '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A':
-            mime_type = 'image/png'
-
-    return Response(img, mimetype=mime_type)    
 
 def insertArt():
     
@@ -176,3 +177,6 @@ def insertArt():
 
 if __name__ == '__main__':
     run_simple('localhost', 8000, app, use_reloader=True, use_debugger=True, use_evalex=True) 
+    
+    
+    

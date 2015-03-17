@@ -14,7 +14,54 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
 
     <title>John Franco, Artist</title>
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script>
+    
+    function carouselNormalization() {
+    var items = $('#carousel-example-generic .item'), //grab all slides
+        heights = [], //create empty array to store height values
+        tallest; //create variable to make note of the tallest slide
+        active_height = $('#carousel-example-generic .active').height(); // First active painting height
+        
+    if (items.length) {
+      
+        function activeHeight(){
+            items.each(function() {
+              $(this).css('max-height',active_height + 'px');
+            });
+        }            
+      
+      
+        function normalizeHeights() {
+            items.each(function() { //add heights to array
+                heights.push($(this).height()); 
+            });
+            
+            $('#carousel-example-generic .active')
+            
+            tallest = Math.max.apply(null, heights); //cache largest value
+            items.each(function() {
+                $(this).css('min-height',tallest + 'px');
+            });
+        };
+        normalizeHeights();
 
+        $(window).on('resize orientationchange', function () {
+            tallest = 0, heights.length = 0; //reset vars
+            items.each(function() {
+                $(this).css('min-height','0'); //reset min-height
+            }); 
+            // normalizeHeights(); //run it again 
+            activeHeight()
+        });
+    }
+    }
+    
+    $(document).ready(function(){
+      // carouselNormalization();
+    });
+    
+    </script>    
     <style>
       #logo {
         height:38px;
@@ -53,7 +100,10 @@
       <script src="../../assets/js/html5shiv.js"></script>
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
+
+      
   </head>
+
   <body>
 
     <!-- Wrap all page content here -->
@@ -78,10 +128,10 @@
               <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header {{ '%s' % 'active' if date=='2013' }}">2013</li>
+                  <li class="dropdown-header {{ '%s' % 'active' if show=='2013' }}">2013</li>
                    <li><a href="/show/2013/paint">Paintings</a></li>
                    <li><a href="/show/2013/draw">Drawings</a></li>
-                  <li class="dropdown-header {{ '%s' % 'active' if date=='2010' }}">2010</li>
+                  <li class="dropdown-header {{ '%s' % 'active' if show=='2010' }}">2010</li>
                    <li><a href="/show/2010/paint">Paintings</a></li>
                    <li><a href="/show/2010/draw">Drawings</a></li>
                 </ul>
@@ -95,57 +145,55 @@
       <div class="container">
         
         <div class="row">
-          
-          
-          
-          <div class="col-lg-12">
-            <h2 class="page-header">{{'%s' % 'Drawings' if medium=='draw'}}{{'%s' % 'Oil Paintings' if medium=='paint'}} <small style="text-transform ">{{date}} <span class="glyphicon glyphicon-list-alt" data-toggle="modal" data-target="#catalogModal" style="cursor:pointer;" title="Click to see the catalog"></span> <span class='small'>(Click for Catalog)<span></small></h2>
-              <!-- .modal --> 
-            <div class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="catalogModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">{{date}} Catalog</h4>
-                  </div>
-                  <div class="modal-body">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->  
+          <p class="text-center"><a href="/show/{{show}}/{{medium}}"><span class="glyphicon glyphicon-arrow-up"></span></a></p>
+          <!-- New way. Haven't perfected it yet.
+             
+          <div id="carousel-example-generic" class="carousel slide" data-pause="stop">
+
+            
+            <div class="carousel-inner">
               
-          </div>
+              <div class="item active col-md-8 col-md-offset-2">
+                <img src="/static/img/works/{{date}}/{{medium}}/{{file}}">
+              </div>
+              
+              
+              {% for item in names %}
+              <div class="item col-md-8 col-md-offset-2">
+                <img src="/static/img/works/{{date}}/{{medium}}/{{item}}">
+              </div>
+              {% endfor %}
+            </div>
+
+            
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div> -->
+
+            
+              <!-- Old way -->
+              <div class="col-md-8 col-md-offset-2">
+              <img class="img-responsive" src="/static/img/works/{{show}}/{{medium}}/{{file}}">
+            </div>
 
         </div>
 
-        {% for row in artwork|batch(3) %}
-          <div class="row">
-            {% for item in row  %}
-            <div class="col-md-4 portfolio-item {{ loop.cycle('odd', 'even','prime','cube') }}">
-                <a href="/art/{{date}}/{{medium}}/{{item['filename']}}.jpg"><img class="img-responsive" src="/static/img/works/{{date}}/{{medium}}/{{item['filename']}}.jpg"></a>
-            </div>
-            {% endfor %}  
-          </div> 
-        {% endfor %}
+        <div class="row">
 
-        <!-- <div class="row text-center">
-        
-          <div class="col-lg-12">
-            <ul class="pagination">
-              <li><a href="#">&laquo;</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&raquo;</a></li>
-            </ul>        
-          </div>
+                <div class="col-lg-12">
+                  <h4 class="page-header">Continue</h4>
+                </div>
 
-        </div> -->
+                {% for item in navNames %}
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                        <a href="/art/{{show}}/{{medium}}/{{item}}.jpg"><img class="img-responsive" src="/static/img/works/{{show}}/{{medium}}/{{item}}.jpg"></a>
+                </div>
+                {% endfor %}
+              </div>
 
       </div><!-- /.container -->
     </div>
@@ -158,34 +206,9 @@
 
 
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+
     <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script>
-      var artwork = {{artwork|tojson}};
-    // var catalog
-    // $.getJSON( "/static/img/works/{{date}}/catalog.json", function( data ) {
-    //
-    //   catalog=data;
-    //   console.log(data);
-      var medium = "{{medium}}";
-      $.each(artwork, function( key, val ) {
-        item = "<li id='" + val['filename'] + "'>"
-              +"<span class=\"badge pull-left pull-down\">"+val['filename']+"</span>"
-              +"<span><p class='inline pull-left'>"
-              +" <em>"+val['description']+"</em><br>"+'Completed in '+val['year'] +"<br>"
-              +"<span>"+ val['height']+"</span>in"+ " X " +"<span>"+ val['width']+"</span>in, "
-              +'$'+val['price']
-              +"</p></span>"
-              + "<img class=\"inline pull-right\" style=\"height:50px;width:50px;\" src=\"/static/img/works/{{date}}/{{medium}}/"+val['filename']+".jpg\">"
-              + "</li>";
-        $('.modal-body').append(item)
-        // items.push(key,val)
-        // items.push( "<li id='" + key + "'>" + val + "</li>" );
-        });
-    //
-    // });
-    </script>
     
   </body>
 </html>

@@ -77,7 +77,13 @@
           </div><!--/.nav-collapse -->
         </div>
       </div>
-
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for message, level in messages %}
+      		<div class="notification-{{level}}">{{message}}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header special">
@@ -115,5 +121,11 @@
     <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+    $(document).ready(function() {
+      $(".notification-info, .notification-error").hide(0);
+      $(".notification-info, .notification-error").fadeIn(500).delay(9000).slideUp(500);
+    });
+    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 body
 {
   background-color:#fff; /*#EBEBEB; */
-  font-family: 'Arial', sans-serif;
+  font-family: Helvetica;
   font-size:15px;
 }
 
@@ -84,4 +84,16 @@ body
 
 .small {
   font-size:8px;
+}
+
+/* Notification Bars */
+.notification-info, .notification-error {
+	width: 100%; line-height: 20px; padding: 15px 0;
+	background: #94bb36; text-align: center;
+	font-size: 13px; font-weight: 500; color: #FFF;
+	position: relative; z-index: 999;
+  margin-top:51px;
+}
+.notification-error {
+	background: #cf3232;
 }
