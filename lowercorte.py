@@ -99,7 +99,7 @@ def showdb(date=None,medium=None):
     
     artwork = sorted(artwork, key=lambda k: tryint(k['filename']))
     
-    return render_template('showdb.html',date=date,medium=medium,total=len(artwork),the_path=the_path, artwork=artwork)
+    return render_template('show.html',date=date,medium=medium,total=len(artwork),the_path=the_path, artwork=artwork)
 
 @app.route('/show_old')
 @app.route('/show_old/<date>/<medium>/')
